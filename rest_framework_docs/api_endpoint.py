@@ -126,7 +126,10 @@ class ApiEndpoint(object):
 
         """
         if isinstance(field, PrimaryKeyRelatedField):
-            return ['Related field ' + str(field.queryset.model)]
+            try:
+              return ['Related field ' + str(field.queryset.model)]
+            except:
+              return ['Related Field']
 
         if hasattr(field, 'choices'):
             # Force choice keys to be a string or `json.dumps` fails
